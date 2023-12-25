@@ -1,0 +1,109 @@
+1)
+> db.products.aggregate([{$group : {_id:"$category", avgPrice:{$avg: "$price"}}}])
+{ "_id" : "Furniture", "avgPrice" : 175 }
+{ "_id" : "Appliances", "avgPrice" : 60 }
+{ "_id" : "Accessories", "avgPrice" : 35 }
+{ "_id" : "Electronics", "avgPrice" : 700 }
+{ "_id" : "Apparel", "avgPrice" : 80 }
+{ "_id" : "Fitness", "avgPrice" : 25 }
+
+
+2)
+> db.products.aggregate([{$group : {_id:"$category", avgQuantity:{$avg: "$quantity"}}}])
+{ "_id" : "Furniture", "avgQuantity" : 11 }
+{ "_id" : "Appliances", "avgQuantity" : 25 }
+{ "_id" : "Accessories", "avgQuantity" : 25 }
+{ "_id" : "Electronics", "avgQuantity" : 33.333333333333336 }
+{ "_id" : "Apparel", "avgQuantity" : 40 }
+{ "_id" : "Fitness", "avgQuantity" : 20 }
+
+
+3)
+> db.products.aggregate([{$group: {_id: "$category", totalPrice:{$sum: "$price"}}}])
+{ "_id" : "Accessories", "totalPrice" : 70 }
+{ "_id" : "Fitness", "totalPrice" : 25 }
+{ "_id" : "Appliances", "totalPrice" : 60 }
+{ "_id" : "Furniture", "totalPrice" : 350 }
+{ "_id" : "Electronics", "totalPrice" : 2100 }
+{ "_id" : "Apparel", "totalPrice" : 80 }
+
+
+4)
+> db.products.aggregate([{$sort: {price: -1}}])
+{ "_id" : ObjectId("65831152ee53ba5ef82766e6"), "name" : "Laptop", "category" : "Electronics", "price" : 1200, "quantity" : 20 }
+{ "_id" : ObjectId("65831152ee53ba5ef82766e7"), "name" : "Smartphone", "category" : "Electronics", "price" : 800, "quantity" : 30 }
+{ "_id" : ObjectId("65831152ee53ba5ef82766ed"), "name" : "Bookshelf", "category" : "Furniture", "price" : 200, "quantity" : 12 }
+{ "_id" : ObjectId("65831152ee53ba5ef82766e9"), "name" : "Desk Chair", "category" : "Furniture", "price" : 150, "quantity" : 10 }
+{ "_id" : ObjectId("65831152ee53ba5ef82766e8"), "name" : "Headphones", "category" : "Electronics", "price" : 100, "quantity" : 50 }
+{ "_id" : ObjectId("65831152ee53ba5ef82766eb"), "name" : "Running Shoes", "category" : "Apparel", "price" : 80, "quantity" : 40 }
+{ "_id" : ObjectId("65831152ee53ba5ef82766ea"), "name" : "Coffee Maker", "category" : "Appliances", "price" : 60, "quantity" : 25 }
+{ "_id" : ObjectId("65831152ee53ba5ef82766ec"), "name" : "Backpack", "category" : "Accessories", "price" : 40, "quantity" : 15 }
+{ "_id" : ObjectId("65831152ee53ba5ef82766ee"), "name" : "Sunglasses", "category" : "Accessories", "price" : 30, "quantity" : 35 }
+{ "_id" : ObjectId("65831152ee53ba5ef82766ef"), "name" : "Yoga Mat", "category" : "Fitness", "price" : 25, "quantity" : 20 }
+
+
+5)
+> db.products.aggregate([{$sort: {price: 1}}])
+{ "_id" : ObjectId("65831152ee53ba5ef82766ef"), "name" : "Yoga Mat", "category" : "Fitness", "price" : 25, "quantity" : 20 }
+{ "_id" : ObjectId("65831152ee53ba5ef82766ee"), "name" : "Sunglasses", "category" : "Accessories", "price" : 30, "quantity" : 35 }
+{ "_id" : ObjectId("65831152ee53ba5ef82766ec"), "name" : "Backpack", "category" : "Accessories", "price" : 40, "quantity" : 15 }
+{ "_id" : ObjectId("65831152ee53ba5ef82766ea"), "name" : "Coffee Maker", "category" : "Appliances", "price" : 60, "quantity" : 25 }
+{ "_id" : ObjectId("65831152ee53ba5ef82766eb"), "name" : "Running Shoes", "category" : "Apparel", "price" : 80, "quantity" : 40 }
+{ "_id" : ObjectId("65831152ee53ba5ef82766e8"), "name" : "Headphones", "category" : "Electronics", "price" : 100, "quantity" : 50 }
+{ "_id" : ObjectId("65831152ee53ba5ef82766e9"), "name" : "Desk Chair", "category" : "Furniture", "price" : 150, "quantity" : 10 }
+{ "_id" : ObjectId("65831152ee53ba5ef82766ed"), "name" : "Bookshelf", "category" : "Furniture", "price" : 200, "quantity" : 12 }
+{ "_id" : ObjectId("65831152ee53ba5ef82766e7"), "name" : "Smartphone", "category" : "Electronics", "price" : 800, "quantity" : 30 }
+{ "_id" : ObjectId("65831152ee53ba5ef82766e6"), "name" : "Laptop", "category" : "Electronics", "price" : 1200, "quantity" : 20 }
+>
+
+
+6)
+> db.products.aggregate([{$project: {name:1, category:1}}])
+{ "_id" : ObjectId("65831152ee53ba5ef82766e6"), "name" : "Laptop", "category" : "Electronics" }
+{ "_id" : ObjectId("65831152ee53ba5ef82766e7"), "name" : "Smartphone", "category" : "Electronics" }
+{ "_id" : ObjectId("65831152ee53ba5ef82766e8"), "name" : "Headphones", "category" : "Electronics" }
+{ "_id" : ObjectId("65831152ee53ba5ef82766e9"), "name" : "Desk Chair", "category" : "Furniture" }
+{ "_id" : ObjectId("65831152ee53ba5ef82766ea"), "name" : "Coffee Maker", "category" : "Appliances" }
+{ "_id" : ObjectId("65831152ee53ba5ef82766eb"), "name" : "Running Shoes", "category" : "Apparel" }
+{ "_id" : ObjectId("65831152ee53ba5ef82766ec"), "name" : "Backpack", "category" : "Accessories" }
+{ "_id" : ObjectId("65831152ee53ba5ef82766ed"), "name" : "Bookshelf", "category" : "Furniture" }
+{ "_id" : ObjectId("65831152ee53ba5ef82766ee"), "name" : "Sunglasses", "category" : "Accessories" }
+{ "_id" : ObjectId("65831152ee53ba5ef82766ef"), "name" : "Yoga Mat", "category" : "Fitness" }
+
+
+7)
+> db.products.aggregate([{$project: {_id:0 ,name:1, category:1}}])
+{ "name" : "Laptop", "category" : "Electronics" }
+{ "name" : "Smartphone", "category" : "Electronics" }
+{ "name" : "Headphones", "category" : "Electronics" }
+{ "name" : "Desk Chair", "category" : "Furniture" }
+{ "name" : "Coffee Maker", "category" : "Appliances" }
+{ "name" : "Running Shoes", "category" : "Apparel" }
+{ "name" : "Backpack", "category" : "Accessories" }
+{ "name" : "Bookshelf", "category" : "Furniture" }
+{ "name" : "Sunglasses", "category" : "Accessories" }
+{ "name" : "Yoga Mat", "category" : "Fitness" }
+
+8)
+> db.products.aggregate([{$sort: {price: 1}}, {$project:{_id:0, name:1, price:1}}])
+{ "name" : "Yoga Mat", "price" : 25 }
+{ "name" : "Sunglasses", "price" : 30 }
+{ "name" : "Backpack", "price" : 40 }
+{ "name" : "Coffee Maker", "price" : 60 }
+{ "name" : "Running Shoes", "price" : 80 }
+{ "name" : "Headphones", "price" : 100 }
+{ "name" : "Desk Chair", "price" : 150 }
+{ "name" : "Bookshelf", "price" : 200 }
+{ "name" : "Smartphone", "price" : 800 }
+{ "name" : "Laptop", "price" : 1200 }
+
+
+9)
+> db.products.aggregate([{$sort:{price:1}}, {$match:{price:{$gt : 50}}}, {$project:{_id:0, name:1, price:1}}])
+{ "name" : "Coffee Maker", "price" : 60 }
+{ "name" : "Running Shoes", "price" : 80 }
+{ "name" : "Headphones", "price" : 100 }
+{ "name" : "Desk Chair", "price" : 150 }
+{ "name" : "Bookshelf", "price" : 200 }
+{ "name" : "Smartphone", "price" : 800 }
+{ "name" : "Laptop", "price" : 1200 }

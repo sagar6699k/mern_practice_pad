@@ -1,0 +1,13 @@
+.movie_dashboard_container{
+    padding: 1rem;
+}
+.movie_dashboard_container > input{
+    padding: 0.3rem;
+    width: 30%;
+}
+
+.list_item{
+    color: black;
+    font-size: 20px;
+    padding: 0.2rem;
+}
